@@ -40,6 +40,6 @@ cout<< "Calculated value of Pi : "<< integral << endl;
 cerr << "Error : " << (M_PI - integral)*100 << " %"<< endl;
 //cout<< fx;
 printf("time is :%f seconds. ",(((float)(clock()-tstart))/CLOCKS_PER_SEC) );
-
+printf("\n\n\n testing git")
 return 0;
 }
