@@ -1,0 +1,1 @@
+printf("time is :%f seconds. ",(((float)(clock()-tstart))/CLOCKS_PER_SEC) );
