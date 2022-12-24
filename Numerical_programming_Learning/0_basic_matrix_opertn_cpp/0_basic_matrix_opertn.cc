@@ -1,8 +1,16 @@
 #include <iostream>
+using namespace std;
+
+
+
+
+
 
 int main()
 {
-std::cout<< " Hello _world,testing_git from cpp"<< std :: endl;
-std::cout<< " Hello _world,testing_git from cpp again";
+int xmin= -1;
+int xmax=+1;
+
+
     return 0;
 }
