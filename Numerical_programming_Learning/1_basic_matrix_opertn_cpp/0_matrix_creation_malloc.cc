@@ -54,7 +54,7 @@ double** A = Matrix(xmin,xmax,ymin,ymax);
 
 // A={{1, 2, 3}, {4, 5, 6}, {7,8,9}};   //cannot allocate like this, you need to acces each space individually to assign or operate on that value
 
-// allocating vvalues below.
+// allocating values below.
 for (int i= xmin ; i<=xmax ; i++){
     for (int j= ymin ; j<=ymax ; j++)
     { 
@@ -63,7 +63,7 @@ for (int i= xmin ; i<=xmax ; i++){
     }
 cout<< endl ;
 }
-cout<< " size is : " << sizeof(A) <<endl;
+cout<< "Total size is : " << sizeof(A) <<endl;
 DestroyMatrix(A,xmin,ymin);
 // cout<< endl <<"testing \n1\n2\n3" <<endl;
     return 0;
