@@ -36,12 +36,17 @@ for (i=x_min+1 ; i<=x_max ; i++)  p[i]=p[i-1] + Ny;
 return p;
 }
 
-
 void DestroyMatrix(double** p,int x_min, int y_min)
 {
     free((void*) (p[x_min] + y_min));  // de-allocate block
     free((void*) (p + x_min));      //   de-allocate array of row pointers
     cout << "Matrix Destroyed"<< endl ;
+}
+
+double MatrixNull(double** p,int x_min, int x_max,int y_min,int y_max)       // allocating values.
+{
+for (int i= x_min ; i<=x_max ; i++)
+    for (int j= y_min ; j<=y_max ; j++)  p[i][j] = 0 ; 
 }
 
 void MatrixRandCreate(double** p,int x_min, int x_max,int y_min,int y_max)   //create a random matrix
@@ -71,40 +76,44 @@ void MatrixTranspose(double** p,int x_min, int x_max,int y_min,int y_max){
 }
 
 void MatrixSubtraction(double** p, double** q, double** r, int x_min, int x_max,int y_min,int y_max){
-    for (int i=x_min+1; i<=x_max; i++)
+    for (int i=x_min; i<=x_max; i++)
         for (int j = y_min; j<=y_max ; j++) {
             r[i][j]= p[i][j] - q[i][j];
         }
 }
 
 void MatrixAddition(double** p, double** q, double** r, int x_min, int x_max,int y_min,int y_max){
-    for (int i=x_min+1; i<=x_max; i++)
+    for (int i=x_min; i<=x_max; i++)
         for (int j = y_min; j<=y_max ; j++) {
             r[i][j]= p[i][j] + q[i][j];
         }
 }
 
 void MatrixProduct(double** p, double** q, double** r, int x_min, int x_max,int y_min,int y_max){
-    for (int i=x_min+1; i<=x_max; i++)
+    // int Ny = y_max-y_min+1;
+    for (int i=x_min; i<=x_max; i++)
         for (int j = y_min; j<=y_max ; j++) {
-            double temp=1e0;
+            double temp=0e0 ;
             for(int k=y_min; k<=y_max; k++)  temp += p[i][k] * q[k][j];
+                // temp += p[i][k] * q[k][j];
             r[i][j] = temp;
         }
 }
 
 double MatrixNorm(double** p,int x_min, int x_max,int y_min,int y_max){     // return max|a[i][j]|
     double norm = 0e0;
-    for (int i=x_min+1; i<=x_max; i++)
+    for (int i=x_min; i<=x_max; i++)
         for (int j = y_min; j<=y_max ; j++) {
             if(norm < (fabs(p[i][j]))) norm = fabs(p[i][j]); 
         }
     return norm;
 }
 
+
+
 void templatee(double** p,int x_min, int x_max,int y_min,int y_max)     //simple template to create functions
 {
-    for (int i=x_min+1; i<=x_max; i++)
+    for (int i=x_min; i<=x_max; i++)
         for (int j = y_min; j<=y_max ; j++) {
 
         }
@@ -115,25 +124,38 @@ void templatee(double** p,int x_min, int x_max,int y_min,int y_max)     //simple
 int main()
 {
 int xmin,xmax,ymin,ymax;
-xmin =-2 ; xmax = +2;
-ymin =-2 ; ymax = +2;
+xmin =-1 ; xmax = +1;
+ymin =-1 ; ymax = +1;
+
 
 double** A = Matrix(xmin,xmax,ymin,ymax);
+double** B = Matrix(xmin,xmax,ymin,ymax);
+double** C = Matrix(xmin,xmax,ymin,ymax);
 
-// allocating values below.
-/*
-for (int i= xmin ; i<=xmax ; i++)
-    for (int j= ymin ; j<=ymax ; j++)  A[i][j] = i*i*(-j) ; 
-*/
 
 MatrixRandCreate(A,xmin,xmax,ymin,ymax);  // create a random matrix A
+cout<< "MAT A : " <<endl;
 MatrixPrint(A,xmin,xmax,ymin,ymax);
 
+MatrixRandCreate(B,xmin,xmax,ymin,ymax);  // create a random matrix A
+cout<< "MAT B : " <<endl;
+MatrixPrint(B,xmin,xmax,ymin,ymax);
+
+MatrixProduct(A,B,C,xmin,xmax,ymin,ymax);
+cout<< "MAT C (i.e. C = A*B) : " <<endl;
+MatrixPrint(C,xmin,xmax,ymin,ymax);
+
+MatrixAddition(A,B,C,xmin,xmax,ymin,ymax);
+cout<< "MAT C (i.e. C = A+B) : " <<endl;
+MatrixPrint(C,xmin,xmax,ymin,ymax);
+
+MatrixSubtraction(A,B,C,xmin,xmax,ymin,ymax);
+cout<< "MAT C (i.e. C = A-B) : " <<endl;
+MatrixPrint(C,xmin,xmax,ymin,ymax);
 
 MatrixTranspose(A,xmin,xmax,ymin,ymax);
 cout<<"Max random value is : " <<RAND_MAX+1e0 << endl << "Tranpose is " << endl;
 MatrixPrint(A,xmin,xmax,ymin,ymax);
-
 
 double norm_is = MatrixNorm(A,xmin,xmax,ymin,ymax);
 
