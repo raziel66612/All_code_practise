@@ -20,9 +20,9 @@ This will ensure that only the elements of the actual n x m matrix are printed, 
 If you try to loop from 0 to n and 0 to m, you will end up printing the extra row and column as well, which may not be desired.
 """
 
-def MatPrint(a,n,m):
-    for i in range(1,n+1):
-        for j in range (1,m+1): print('{0:11.2e}'.format(a[i][j]), end="")
+def MatPrint(a,m,n):
+    for i in range(1,m+1):
+        for j in range (1,n+1): print('{0:11.2e}'.format(a[i][j]), end="")
         print()
 
 
@@ -33,6 +33,28 @@ def MatProd(a,b,c,m,n,l):
             for k in range(1,l+1): t+=a[i][k]*b[k][j]
             c[i][j] = t
 
+def MatTrans(a,m,n):
+    for i in range(1,m+1):
+        for j in range(n+1):
+            temp=a[i][j]; a[i][j] = a[j][i]; a[j][i]= temp
+
+
+def MatDiff(a,b,c,m,n):
+    for i in range(1,m+1):
+        for j in range(n+1):
+            c[i][j] = a[i][j] - b[i][j]
+
+def MatAdd(a,b,c,m,n):
+    for i in range(1,m+1):
+        for j in range(n+1):
+            c[i][j] = a[i][j] + b[i][j]
+
+def MatNorm(a,m,n):
+    norm = 0e0
+    for i in range(1,m+1):
+        for j in range(1,n+1):
+            if(norm < fabs(a[i][j])): norm = fabs(a[i][j])
+    return norm 
 
 #a=[[1, 2],[2, 1]]
 #MatPrint(a)
@@ -92,4 +114,12 @@ if m==n:
 else:
     print("Need a square matrix to perform matrix product, please verify that 'm = n'")
 
+print("Product C matrix is :")
 MatPrint(C,m,n)
+
+MatAdd(A,B,D,m,n)
+print(" A + B = ")
+MatPrint(D,m,n)
+
+
+print(" Norm of A+B is = ",MatNorm(D,m,n))
