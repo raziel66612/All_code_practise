@@ -6,4 +6,4 @@
 
 >`3_canvas_clock_dynamic_1` code in this file updates the clock hands on every run, giving you an actual time right at that instant.
 
->`4_3_canvas_clock_dynamic_2` this is updated `3_canvas_clock_dynamic_1` code, where once code is ran, it undergoe event loop, thereby updating the clock at every given instant
+>`4_3_canvas_clock_dynamic_2` this is updated `3_canvas_clock_dynamic_1` code, where once code is ran, it undergoes event loop, thereby updating the clock at every given 1 millisecond and starts calling itself iteratively until the *canvas widget* is closed
