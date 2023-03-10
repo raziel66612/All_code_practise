@@ -7,7 +7,7 @@ root.title("Canvas")
 
 
 
-def Clock(w,nx,ny):
+def Clock0(w,nx,ny):
     x0=nx/2; lx= (9/20)*nx 
     y0=nx/2; ly= (9/20)*ny
     r0 = 0.9*min(lx,ly)  #dist of hour labelf from center
@@ -31,16 +31,20 @@ def Clock(w,nx,ny):
     y = y0 - r1*cos(theta)
     w.create_line(x0,y0,x,y,arrow=LAST, fill="black", width = 4)
 
-    theta = pi/6 * t_min
+    theta = pi/(6*5) * t_min
     x = x0 + r2*sin(theta)
     y = y0 - r2*cos(theta)
     w.create_line(x0,y0,x,y,arrow=LAST, fill="blue", width = 2)
 
-    theta = pi/6 * t_sec
+    theta = pi/(6*5) * t_sec
     x = x0 + r2*sin(theta)
     y = y0 - r2*cos(theta)
     w.create_line(x0,y0,x,y,arrow=LAST, fill="red", width = 1.5)
 
+def Clock(w,nx,ny):
+    w.delete(ALL)
+    Clock0(w,nx,ny)
+    w.after(1,Clock,w,nx,ny)
 
 Nx=300
 Ny=300   #canvas size
