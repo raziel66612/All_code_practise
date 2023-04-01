@@ -1,5 +1,5 @@
 from math import *
-from graph0 import *
+from graph0 import *   #import graph0 and all the functions written in that script. 
 
 def Func(x):
     return (pow(x,3)*exp(-x))
