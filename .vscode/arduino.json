@@ -1,0 +1,5 @@
+{
+    "board": "arduino:avr:uno",
+    "port": "COM6",
+    "sketch": "..\\Arduino\\Linear_Actuator_2\\Linear_actuator_3_pos_serial_input\\Linear_actuator_3_pos_serial_input.ino"
+}
